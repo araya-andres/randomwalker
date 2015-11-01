@@ -40,6 +40,9 @@ function joinTheDots(targetCanvas, gridSize, dots, sideLength) {
     });
 }
 
-var canvas = document.getElementById('canvas');
+var canvas = $('#canvas');
 var n = 10;
-joinTheDots(canvas, 2 * n, getSteps(n));
+var steps = getSteps(n);
+joinTheDots(canvas[0], 2 * n, steps);
+canvas.addClass('grid');
+$('<p>Number of steps: ' + steps.length + '</p>').insertAfter(canvas);
