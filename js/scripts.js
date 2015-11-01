@@ -38,6 +38,7 @@ function joinTheDots(targetCanvas, gridSize, dots, sideLength) {
         ctx.lineTo(scaleFactor * p.x, scaleFactor * p.y);
         ctx.stroke();
     });
+    dots.unshift(p0);
 }
 
 var canvas = $('#canvas');
@@ -45,4 +46,4 @@ var n = 10;
 var steps = getSteps(n);
 joinTheDots(canvas[0], 2 * n, steps);
 canvas.addClass('grid');
-$('<p>Number of steps: ' + steps.length + '</p>').insertAfter(canvas);
+$('<p>Number of steps: ' + (steps.length - 1) + '</p>').insertAfter(canvas);
