@@ -25,20 +25,21 @@ function getSteps(n) {
     return steps;
 }
 
-function draw(canvas, points, side) {
-    var side = side || 300;
-    var ctx = canvas.getContext('2d');
-    var p0 = points.shift();
-    var k = side / (2 * p0.x);
+function joinTheDots(targetCanvas, gridSize, dots, sideLength) {
+    var sideLength = sideLength || 300;
+    var ctx = targetCanvas.getContext('2d');
+    var p0 = dots.shift();
+    var scaleFactor = sideLength / gridSize;
 
-    canvas.height = canvas.width = side;
+    targetCanvas.height = targetCanvas.width = sideLength;
     ctx.beginPath();
-    ctx.moveTo(k * p0.x, k * p0.y);
-    points.forEach(function(p) {
-        ctx.lineTo(k * p.x, k * p.y);
+    ctx.moveTo(scaleFactor * p0.x, scaleFactor * p0.y);
+    dots.forEach(function(p) {
+        ctx.lineTo(scaleFactor * p.x, scaleFactor * p.y);
         ctx.stroke();
     });
 }
 
 var canvas = document.getElementById('canvas');
-draw(canvas, getSteps(10), 500);
+var n = 10;
+joinTheDots(canvas, 2 * n, getSteps(n));
